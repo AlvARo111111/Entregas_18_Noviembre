@@ -2,9 +2,7 @@ import threading
 import time
 import random
 
-def procesar_usuario(idUsuario, **kwargs):
-    nombre = kwargs.get('nombre', 'Desconocido')
-    edad = kwargs.get('edad', 'N/A')
+def procesarUsuario(idUsuario, nombre, edad):
 
     # Pausa aleatoria
     time.sleep(random.uniform(0.5, 2.0))
@@ -26,7 +24,7 @@ hilos = []
 # Crear un hilo para cada usuario en la lista
 for usuario in usuarios:
 
-    hilo = threading.Thread(target=procesar_usuario, args=(usuario['id'],), kwargs={'nombre': usuario['nombre'], 'edad': usuario['edad']})
+    hilo = threading.Thread(target=procesarUsuario, args=(usuario['id'],), kwargs={'nombre': usuario['nombre'], 'edad': usuario['edad']})
     hilos.append(hilo)
     hilo.start()
 
